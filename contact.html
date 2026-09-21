@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Food Paradise</title>
+    <style>
+        :root {
+            --bg: #FAF5EE;
+            --bg-alt: #F3EAE0;
+            --surface: #FFFFFF;
+            --ink: #2B211C;
+            --ink-soft: #6E6259;
+            --clay: #A84E2A;
+            --clay-dark: #8C3E1F;
+            --clay-soft: #F3DDD2;
+            --sage: #5C7152;
+            --sage-soft: #E7EDE2;
+            --gold: #D9A441;
+            --line: #E8DFD3;
+            --font-display: "Playfair Display", Georgia, serif;
+            --font-body: "Karla", "Segoe UI", sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.6;
+        }
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid var(--clay);
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+        .page-bar {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(250, 245, 238, .92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px;
+        }
+        .logo-text {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--ink);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .45em;
+        }
+        .logo-mark {
+            font-size: 1.25em;
+            color: var(--clay);
+            background: var(--clay-soft);
+            border-radius: 10px;
+            padding: .12em .28em;
+            line-height: 1;
+        }
+        .page-bar a.back {
+            font-weight: 700;
+            font-size: .92rem;
+            color: var(--clay);
+            text-decoration: none;
+            border: 1.5px solid var(--line);
+            background: var(--surface);
+            padding: .5em 1.1em;
+            border-radius: 999px;
+            transition: border-color .25s, transform .25s;
+        }
+        .page-bar a.back:hover {
+            border-color: var(--clay);
+            transform: translateY(-1px);
+        }
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 48px 16px;
+        }
+        .contact-container {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: 0 16px 48px rgba(43, 33, 28, .08);
+            padding: 2.6rem 2.2rem;
+            max-width: 460px;
+            width: 100%;
+            animation: slideUp .8s ease-out backwards;
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .eyebrow {
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--clay);
+        }
+        h2 {
+            font-family: var(--font-display);
+            color: var(--ink);
+            text-align: center;
+            margin: .5rem 0 .8rem;
+            font-size: 1.9rem;
+        }
+        .contact-info {
+            text-align: center;
+            margin-bottom: 1.6rem;
+            font-size: .95rem;
+            color: var(--ink-soft);
+        }
+        .contact-info a {
+            color: var(--clay);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        .info-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 1.6rem;
+        }
+        .info-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .5em;
+            background: var(--bg-alt);
+            border-radius: 999px;
+            padding: .55em 1.1em;
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .info-chip i {
+            color: var(--clay);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+        label {
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: .35rem;
+            display: block;
+            font-size: .95rem;
+        }
+        input,
+        textarea {
+            width: 100%;
+            padding: .75rem .9rem;
+            border: 1.5px solid var(--line);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
+            transition: border-color .3s;
+            outline: none;
+            resize: none;
+        }
+        input:focus,
+        textarea:focus {
+            border-color: var(--clay);
+        }
+        button[type="submit"] {
+            margin-top: .4rem;
+            background: var(--clay);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: .9rem;
+            font-size: 1.05rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(168, 78, 42, .3);
+            transition: background .3s, transform .2s, box-shadow .2s;
+        }
+        button[type="submit"]:hover {
+            background: var(--clay-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(168, 78, 42, .4);
+        }
+        .social-links {
+            margin-top: 1.6rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        .social-links a {
+            display: inline-grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            background: var(--bg-alt);
+            color: var(--ink);
+            font-size: 1.25rem;
+            transition: background .25s, color .25s, transform .2s;
+        }
+        .social-links a:hover {
+            background: var(--clay);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 500px) {
+            .contact-container {
+                padding: 1.8rem 1.2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="page-bar">
+        <a href="index.html" class="logo-text"><i class="logo-mark bx bx-utensil"></i>foodParadise</a>
+        <a href="index.html" class="back"><i class='bx bx-left-arrow-alt'></i> Back to home</a>
+    </div>
+    <main>
+        <div class="contact-container">
+            <p class="eyebrow">Get in touch</p>
+            <h2>Contact Food Paradise</h2>
+            <div class="contact-info">
+                We'd love to hear from you!
+            </div>
+            <div class="info-row">
+                <span class="info-chip"><i class="bx bx-mail-send"></i>
+                    <a href="mailto:info@foodparadise.com">info@foodparadise.com</a></span>
+                <span class="info-chip"><i class="bx bx-phone"></i>
+                    <a href="tel:+2349131853151">091-3185-3151</a></span>
+            </div>
+            <form>
+                <div>
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+                </div>
+                <div>
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required
+                        placeholder="Type your message"></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="social-links">
+                <a href="#" title="Instagram" aria-label="Instagram"><i class="bx bxs-instagram"></i></a>
+                <a href="#" title="Facebook" aria-label="Facebook"><i class="bx bxs-facebook"></i></a>
+                <a href="#" title="Twitter" aria-label="Twitter"><i class="bx bxs-twitter"></i></a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

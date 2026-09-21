@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Food Paradise</title>
+    <style>
+        :root {
+            --bg: #FAF5EE;
+            --bg-alt: #F3EAE0;
+            --surface: #FFFFFF;
+            --ink: #2B211C;
+            --ink-soft: #6E6259;
+            --clay: #A84E2A;
+            --clay-dark: #8C3E1F;
+            --clay-soft: #F3DDD2;
+            --sage: #5C7152;
+            --sage-soft: #E7EDE2;
+            --gold: #D9A441;
+            --line: #E8DFD3;
+            --font-display: "Playfair Display", Georgia, serif;
+            --font-body: "Karla", "Segoe UI", sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            margin: 0;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--clay);
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+        .page-bar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(250, 245, 238, .92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px;
+        }
+        .logo-text {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--ink);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .45em;
+        }
+        .logo-mark {
+            font-size: 1.25em;
+            color: var(--clay);
+            background: var(--clay-soft);
+            border-radius: 10px;
+            padding: .12em .28em;
+            line-height: 1;
+        }
+        .page-bar a.back {
+            font-weight: 700;
+            font-size: .92rem;
+            color: var(--clay);
+            text-decoration: none;
+            border: 1.5px solid var(--line);
+            background: var(--surface);
+            padding: .5em 1.1em;
+            border-radius: 999px;
+            transition: border-color .25s, color .25s, transform .25s;
+        }
+        .page-bar a.back:hover {
+            border-color: var(--clay);
+            transform: translateY(-1px);
+        }
+        .container {
+            max-width: 900px;
+            margin: 48px auto;
+            background: var(--surface);
+            padding: 48px 40px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            box-shadow: 0 12px 40px rgba(43, 33, 28, .07);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp .8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .eyebrow {
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--clay);
+        }
+        h1 {
+            font-family: var(--font-display);
+            color: var(--ink);
+            font-size: clamp(2rem, 4vw, 2.7rem);
+            margin: .5rem 0 1rem;
+        }
+        h2 {
+            font-family: var(--font-display);
+            color: var(--ink);
+            font-size: 1.5rem;
+            margin-top: 34px;
+            margin-bottom: .6rem;
+        }
+        h2::after {
+            content: "";
+            display: block;
+            width: 44px;
+            height: 3px;
+            border-radius: 99px;
+            background: var(--clay);
+            margin-top: 10px;
+        }
+        p {
+            line-height: 1.75;
+            margin-bottom: 14px;
+            color: var(--ink-soft);
+        }
+        ul {
+            margin: 0 0 14px;
+            padding-left: 0;
+            list-style: none;
+        }
+        li {
+            margin: .7rem 0;
+            padding-left: 1.6em;
+            position: relative;
+            color: var(--ink-soft);
+        }
+        li::before {
+            content: "\f0a5";
+            font-family: boxicons;
+            position: absolute;
+            left: 0;
+            top: .1em;
+            color: var(--sage);
+            font-size: 1.1em;
+        }
+        li strong {
+            color: var(--ink);
+        }
+        .team {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .member {
+            flex: 1;
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
+            padding: 24px 18px;
+            border-radius: 18px;
+            text-align: center;
+        }
+        .member img {
+            width: 84px;
+            height: 84px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            border: 3px solid var(--surface);
+        }
+        .member h3 {
+            font-family: var(--font-display);
+            margin: 0 0 4px;
+            font-size: 1.15rem;
+        }
+        .member p {
+            font-size: .92rem;
+            margin-bottom: 8px;
+        }
+        .member p.role {
+            color: var(--clay);
+            font-weight: 700;
+            font-size: .85rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+        #home-btn {
+            all: unset;
+            display: inline-flex;
+            cursor: pointer;
+            margin-top: 20px;
+            padding: .85em 1.8em;
+            background-color: var(--clay);
+            border-radius: 999px;
+            box-shadow: 0 10px 24px rgba(168, 78, 42, .3);
+            transition: background .25s, transform .25s;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        #home-btn:hover {
+            background-color: var(--clay-dark);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 700px) {
+            .container {
+                margin: 24px 16px;
+                padding: 28px 20px;
+            }
+            .team {
+                flex-direction: column;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+            .container {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="page-bar">
+        <a href="index.html" class="logo-text"><i class="logo-mark bx bx-utensil"></i>foodParadise</a>
+        <a href="index.html" class="back"><i class='bx bx-left-arrow-alt'></i> Back to home</a>
+    </div>
+    <div class="container">
+        <p class="eyebrow">Our story</p>
+        <h1>About Food Paradise</h1>
+        <p>
+            Welcome to <strong>Food Paradise</strong> – your ultimate destination for discovering, sharing, and
+            celebrating the world of delicious cuisine! Whether you're a passionate home cook, a food enthusiast, or
+            simply someone who loves exploring new flavors, Food Paradise is here to inspire and guide you on your
+            culinary journey.
+        </p>
+        <h2>Our Mission</h2>
+        <p>
+            At Food Paradise, our mission is to bring people together through the joy of food. We believe that every
+            meal tells a story, and every recipe is an opportunity to create lasting memories. Our platform is
+            dedicated to providing detailed recipes, cooking tips, and food guides that cater to all skill levels.
+        </p>
+        <h2>What We Offer</h2>
+        <ul>
+            <li><strong>Curated Recipes:</strong> Explore a wide variety of recipes from different cuisines, each
+                carefully tested and explained step-by-step.</li>
+            <li><strong>Cooking Tutorials:</strong> Learn new techniques and master the art of cooking with our
+                easy-to-follow tutorials.</li>
+            <li><strong>Food Stories:</strong> Dive into articles and stories that celebrate food culture, traditions,
+                and the people behind the dishes.</li>
+            <li><strong>Community:</strong> Connect with fellow food lovers, share your creations, and exchange tips in
+                our vibrant community.</li>
+        </ul>
+        <h2>Meet the Team</h2>
+        <div class="team">
+            <div class="member">
+                <img src="./food-img/chef1.png" alt="Alex Johnson, Founder and Head Chef">
+                <h3>Alex Johnson</h3>
+                <p class="role">Founder &amp; Head Chef</p>
+                <p>Alex brings years of culinary experience and a passion for sharing food knowledge with everyone.</p>
+            </div>
+            <div class="member">
+                <img src="./food-img/chef2.png" alt="John Lee, Content Creator">
+                <h3>John Lee</h3>
+                <p class="role">Content Creator</p>
+                <p>John crafts engaging recipes and food stories, making cooking accessible and fun for all.</p>
+            </div>
+        </div>
+        <h2>Join Us!</h2>
+        <p>
+            We invite you to explore Food Paradise, try our recipes, and become part of our growing community.
+            Whether you're here to learn, share, or simply enjoy great food, there's a place for you at our table.
+        </p>
+        <p>
+            <em>Thank you for visiting Food Paradise – where every bite is a celebration!</em>
+        </p>
+
+        <a id="home-btn" href="index.html">Back to Home</a>
+    </div>
+</body>
+</html>

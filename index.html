@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Food Paradise — fresh, chef-crafted dishes from Nigerian, continental and barbecue kitchens, delivered hot to your door.">
+    <title>Food Paradise — Fresh dishes, delivered with love</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="./food-img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body id="page-container">
+
+    <div class="loader" id="loader">
+        <div class="loader-core">
+            <svg class="loader-ring" viewBox="0 0 200 200" aria-hidden="true">
+                <defs>
+                    <path id="loader-ring-path" d="M100,40 a60,60 0 1,1 0,120 a60,60 0 1,1 0,-120" />
+                </defs>
+                <text class="loader-ring-text">
+                    <textPath href="#loader-ring-path">foodParadise</textPath>
+                </text>
+            </svg>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="topbar">
+        <p><i class='bx bx-gift'></i> Free delivery on orders over &#8358;15,000</p>
+        <p class="hide-mobile"><i class='bx bx-time'></i> Open daily 10:00 &ndash; 22:00</p>
+    </div>
+
+    <nav>
+        <div class="nav-inner">
+            <div class="hamburger-container">
+                <i id="menu-btn" class='bx bx-menu nav-mobile' aria-label="Open menu"></i>
+                <i id="cancel-btn" class='bx bx-x nav-mobile' aria-label="Close menu"></i>
+                <a href="index.html" class="logo-text"><i class="logo-mark bx bx-utensil"></i>foodParadise</a>
+            </div>
+
+            <span class="cart-container" aria-label="Open cart">
+                <i class='bx bx-cart'></i>
+                <span id="cart-count">0</span>
+            </span>
+
+            <ul id="links-container" class="hidden">
+                <li class="nav-links"><a href="index.html"> Home</a></li>
+                <li class="nav-links"><a href="about.html"> About</a></li>
+                <li class="nav-links"><a href="#items-container"> Menu</a></li>
+                <li class="nav-links"><a href="services.html"> Services</a></li>
+                <li class="nav-links"><a href="contact.html"> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="cart-backdrop" aria-hidden="true"></div>
+
+    <aside id="cart-items-container" aria-hidden="true" aria-label="Shopping cart">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="close-cart" class="close-btn" aria-label="Close cart"><i class='bx bx-x'></i></button>
+        </div>
+        <div id="cart-items-wrapper"></div>
+        <div class="cart-summary">
+            <div class="totals-container">
+                <div class="totals">
+                    <span>Items</span>
+                    <p id="total-items">0</p>
+                </div>
+                <div class="totals">
+                    <span>Total</span>
+                    <p>&#8358; <span id="total-price">0</span></p>
+                </div>
+            </div>
+            <div class="cart-actions">
+                <button id="clear-cart" class="clear-cart"><i class='bx bx-trash'></i> Clear</button>
+                <button class="checkout" disabled>Checkout</button>
+            </div>
+        </div>
+    </aside>
+
+    <section class="slideshow-container" aria-label="Featured dishes slideshow">
+        <div class="slideshow-wrapper">
+            <img src="./food-img/slideImage (2).png" alt="Signature dish from the Food Paradise kitchen" class="slide-images">
+            <img src="./food-img/slideImage (1).png" alt="Freshly prepared meal ready to serve" class="slide-images">
+            <img src="./food-img/slideImage (3).png" alt="Colorful plated food from our menu" class="slide-images">
+            <img src="./food-img/slideImage (4).jpg" alt="Dish cooked over open flames" class="slide-images">
+        </div>
+
+        <div class="hero-scrim" aria-hidden="true"></div>
+
+        <div class="hero-content">
+            <p class="eyebrow">Fresh from our kitchen</p>
+            <h1>Flavor that feels like home</h1>
+            <p class="hero-sub">Nigerian classics, continental favorites and slow-smoked barbecue — cooked to order
+                and delivered hot to your door.</p>
+            <div class="hero-actions">
+                <a href="#items-container" class="btn btn-primary"><i class='bx bx-bowl-hot'></i> Browse the menu</a>
+                <a href="services.html" class="btn btn-ghost">Our services</a>
+            </div>
+            <div class="hero-rating">
+                <span class="stars" aria-hidden="true">
+                    <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i
+                        class='bx bxs-star'></i><i class='bx bxs-star'></i>
+                </span>
+                <span class="rating-text"><strong>4.9</strong> · loved by 2,300+ foodies</span>
+            </div>
+        </div>
+
+        <div class="dots-container" id="dots-container"></div>
+    </section>
+
+    <section class="trust-strip" aria-label="Why order from us">
+        <div class="trust-item">
+            <i class="bx bx-leaf"></i>
+            <div>
+                <strong>Fresh daily</strong>
+                <span>Market-fresh ingredients, every day</span>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="bx bx-truck"></i>
+            <div>
+                <strong>30-min delivery</strong>
+                <span>Hot food, on time, tracked live</span>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="bx bx-chef-hat"></i>
+            <div>
+                <strong>Chef-crafted</strong>
+                <span>Recipes perfected over decades</span>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="bx bx-shield-quarter"></i>
+            <div>
+                <strong>Safe &amp; hygienic</strong>
+                <span>Certified kitchen, sealed orders</span>
+            </div>
+        </div>
+    </section>
+
+    <header class="first-heading-wrapper">
+        <p class="eyebrow">Our menu</p>
+        <h1 id="first-heading">Featured Dishes</h1>
+        <p class="section-sub">Hand-picked favorites from our kitchens — tap a category to explore.</p>
+    </header>
+
+    <!-- product items loaded from javascript DOM -->
+    <main>
+        <aside class="categories-select" aria-label="Menu categories">
+            <header class="categories-header">
+                <h2>Categories</h2>
+            </header>
+
+            <div class="categories-buttons">
+                <button class="filter-btn active" type="button" data-id="all">All</button>
+                <button class="filter-btn" type="button" data-id="nigerian">Nigerian</button>
+                <button class="filter-btn" type="button" data-id="continental">Continental</button>
+                <button class="filter-btn" type="button" data-id="shakes">Shakes</button>
+                <button class="filter-btn" type="button" data-id="berbecue">Barbecue</button>
+            </div>
+        </aside>
+
+        <div id="items-container">
+
+        </div>
+    </main>
+
+    <section class="attest-container">
+        <div class="attest-text-wrapper">
+            <p class="eyebrow">Why Food Paradise</p>
+            <h2 class="attest-heading">Every plate is a promise kept</h2>
+            <p class="attest-description">We cook the way we want to be fed: real ingredients, patient technique and a
+                bit of love in every order. No shortcuts, no compromises.</p>
+            <ul class="attest-list-container">
+                <li>
+                    <i class='bx bx-check-circle'></i>
+                    <p><strong>Sourced fresh every morning</strong> — vegetables, meat and spices arrive daily from
+                        local vendors.</p>
+                </li>
+                <li>
+                    <i class='bx bx-check-circle'></i>
+                    <p><strong>Cooked to order</strong> — your meal starts hitting the pan only after you order.</p>
+                </li>
+                <li>
+                    <i class='bx bx-check-circle'></i>
+                    <p><strong>Sealed and timed</strong> — orders leave the kitchen at their peak, sealed for the
+                        journey.</p>
+                </li>
+            </ul>
+            <a href="#items-container" class="btn services-btn btn-primary">View full menu</a>
+        </div>
+        <div class="attest-img-wrapper">
+            <img class="attest-img" src="./food-img/chef-cooking-with-flames-in-modern-kitchen.png"
+                alt="Chef cooking over open flames in our kitchen">
+            <img class="attest-side-img side-img1" src="./food-img/food12.jpg" alt="Fresh breakfast bowl">
+            <img class="attest-side-img side-img2" src="./food-img/food13.png" alt="Veggie bowl with fresh corn">
+            <img class="attest-side-img side-img3" src="./food-img/food5.jpg" alt="Spiced roasted beef">
+        </div>
+    </section>
+
+    <section class="chef-area-container">
+        <div class="chef-grid">
+            <div class="chef-rail">
+                <p class="eyebrow">Meet the masters</p>
+                <h2 class="chef-area-title">Chef Spotlight</h2>
+                <p class="chef-lead">Three kitchens, one standard. Meet the hands behind the plates and the
+                    cuisines they call home.</p>
+
+                <div class="chef-index" id="chef-index" role="tablist" aria-label="Choose a chef"></div>
+
+                <div class="chef-detail" id="chef-detail">
+                    <h3 id="chef-name" class="chef-name"></h3>
+                    <p id="chef-description" class="chef-description"></p>
+                </div>
+            </div>
+
+            <div class="chef-stage" id="chef-stage" role="tabpanel" aria-label="Portrait of the featured chef">
+                <div class="chef-photo-frame" id="chef-frame">
+                    <img id="chef-img" src="./food-img/chef1.png" alt="Portrait of the featured chef">
+                    <div class="chef-spec-card" id="chef-specs"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-container" aria-label="Customer reviews">
+        <div class="testimonials-head">
+            <p class="eyebrow">Word on the street</p>
+            <h2>What our customers say</h2>
+        </div>
+        <div class="testimonials-grid">
+            <figure class="testimonial-card">
+                <div class="stars" aria-hidden="true"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i
+                        class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+                <blockquote>“The pepper soup tastes exactly like my grandmother's. Arrived in 25 minutes and still
+                    simmering hot.”</blockquote>
+                <figcaption>
+                    <span class="avatar" aria-hidden="true">AO</span>
+                    <div>
+                        <strong>Ada Obi</strong>
+                        <span>Lagos · orders weekly</span>
+                    </div>
+                </figcaption>
+            </figure>
+            <figure class="testimonial-card">
+                <div class="stars" aria-hidden="true"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i
+                        class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+                <blockquote>“Ordered the grilled salmon for date night — beautifully plated, generous portions and
+                    the quinoa was perfect.”</blockquote>
+                <figcaption>
+                    <span class="avatar" aria-hidden="true">TK</span>
+                    <div>
+                        <strong>Tunde Kalu</strong>
+                        <span>Abuja · foodie since day one</span>
+                    </div>
+                </figcaption>
+            </figure>
+            <figure class="testimonial-card">
+                <div class="stars" aria-hidden="true"><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i
+                        class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i></div>
+                <blockquote>“Their cocoa cream shake is dangerously good. The delivery team even called ahead so I
+                    could pick it up fresh.”</blockquote>
+                <figcaption>
+                    <span class="avatar" aria-hidden="true">SM</span>
+                    <div>
+                        <strong>Sarah Mba</strong>
+                        <span>Port Harcourt · shake loyalist</span>
+                    </div>
+                </figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="cta-band">
+        <div>
+            <h2>Craving something good?</h2>
+            <p>Your table's ready. Order now and taste why 2,300+ foodies keep coming back.</p>
+            <a href="#items-container" class="btn btn-light">Order now</a>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-col footer-brand">
+                <a href="index.html" class="logo-text"><i class="logo-mark bx bx-utensil"></i>foodParadise</a>
+                <p>Fresh, chef-crafted dishes delivered with love — because great food shouldn't wait.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#items-container">Menu</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="bx bx-phone"></i> 091-3185-3151</li>
+                    <li><i class="bx bx-envelope"></i> <a
+                            href="mailto:danibrainy94@gmail.com">danibrainy94@gmail.com</a></li>
+                    <li><i class="bx bx-map"></i> 12 Independence Ave, Lagos</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Opening hours</h3>
+                <ul>
+                    <li><span>Mon – Thu</span> 10:00 – 22:00</li>
+                    <li><span>Fri – Sat</span> 10:00 – 23:00</li>
+                    <li><span>Sunday</span> 12:00 – 21:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 foodParadise. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

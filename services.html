@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Our Services | Food Paradise</title>
+    <style>
+        :root {
+            --bg: #FAF5EE;
+            --bg-alt: #F3EAE0;
+            --surface: #FFFFFF;
+            --ink: #2B211C;
+            --ink-soft: #6E6259;
+            --clay: #A84E2A;
+            --clay-dark: #8C3E1F;
+            --clay-soft: #F3DDD2;
+            --sage: #5C7152;
+            --gold: #D9A441;
+            --line: #E8DFD3;
+            --footer-bg: #241B15;
+            --font-display: "Playfair Display", Georgia, serif;
+            --font-body: "Karla", "Segoe UI", sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--clay);
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+        .page-bar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(250, 245, 238, .92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px;
+        }
+        .logo-text {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--ink);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .45em;
+        }
+        .logo-mark {
+            font-size: 1.25em;
+            color: var(--clay);
+            background: var(--clay-soft);
+            border-radius: 10px;
+            padding: .12em .28em;
+            line-height: 1;
+        }
+        .page-bar a.back {
+            font-weight: 700;
+            font-size: .92rem;
+            color: var(--clay);
+            text-decoration: none;
+            border: 1.5px solid var(--line);
+            background: var(--surface);
+            padding: .5em 1.1em;
+            border-radius: 999px;
+            transition: border-color .25s, transform .25s;
+        }
+        .page-bar a.back:hover {
+            border-color: var(--clay);
+            transform: translateY(-1px);
+        }
+        header.hero {
+            background: var(--footer-bg);
+            color: #EFE7DC;
+            padding: 72px 24px 64px;
+            text-align: center;
+        }
+        header.hero .eyebrow {
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: #EBBE8C;
+        }
+        header.hero h1 {
+            margin: .5rem 0 .6rem;
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+            color: #fff;
+        }
+        header.hero p {
+            margin: 0 auto;
+            max-width: 52ch;
+            font-size: 1.05rem;
+            color: rgba(239, 231, 220, .8);
+        }
+        .services-container {
+            max-width: 1100px;
+            margin: 48px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
+            padding: 0 20px;
+        }
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(43, 33, 28, .06);
+            padding: 2rem 1.6rem;
+            transition: transform .3s, box-shadow .3s;
+            animation: fadeInUp .8s ease-out backwards;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(43, 33, 28, .13);
+        }
+        .service-icon {
+            font-size: 1.9rem;
+            color: var(--clay);
+            background: var(--clay-soft);
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 1.1rem;
+        }
+        .service-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+            color: var(--ink);
+        }
+        .service-desc {
+            font-size: .98rem;
+            color: var(--ink-soft);
+            margin-bottom: 1rem;
+        }
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: .95rem;
+            color: var(--ink-soft);
+        }
+        .service-list li {
+            margin: .55rem 0;
+            position: relative;
+            padding-left: 1.5em;
+        }
+        .service-list li:before {
+            content: "\f0a5";
+            font-family: boxicons;
+            position: absolute;
+            left: 0;
+            top: .1em;
+            color: var(--sage);
+        }
+        .cta-band {
+            max-width: 1100px;
+            margin: 64px auto;
+            padding: 0 20px;
+        }
+        .cta-band > div {
+            background: var(--clay);
+            border-radius: 28px;
+            padding: 48px 24px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 24px 48px rgba(168, 78, 42, .3);
+        }
+        .cta-band h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+            margin: 0 0 .6rem;
+        }
+        .cta-band p {
+            margin: 0 auto 1.5rem;
+            max-width: 44ch;
+            color: rgba(255, 255, 255, .92);
+        }
+        .btn-light {
+            display: inline-flex;
+            align-items: center;
+            gap: .5em;
+            background: #fff;
+            color: var(--clay);
+            text-decoration: none;
+            font-weight: 700;
+            padding: .85em 1.8em;
+            border-radius: 999px;
+            transition: transform .25s, box-shadow .25s;
+        }
+        .btn-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, .22);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 600px) {
+            .services-container {
+                gap: 14px;
+                margin-top: 32px;
+            }
+            .service-card {
+                padding: 1.4rem 1.1rem;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="page-bar">
+        <a href="index.html" class="logo-text"><i class="logo-mark bx bx-utensil"></i>foodParadise</a>
+        <a href="index.html" class="back"><i class='bx bx-left-arrow-alt'></i> Back to home</a>
+    </div>
+
+    <header class="hero">
+        <p class="eyebrow">What we do</p>
+        <h1>Our Services</h1>
+        <p>Discover what makes Food Paradise your best choice for delicious experiences</p>
+    </header>
+    <main>
+        <section class="services-container">
+            <div class="service-card" style="animation-delay:.1s;">
+                <div class="service-icon"><i class="bx bx-restaurant"></i></div>
+                <div class="service-title">Dine-In Experience</div>
+                <div class="service-desc">
+                    Enjoy a cozy atmosphere and friendly service in our beautifully decorated restaurant.
+                </div>
+                <ul class="service-list">
+                    <li>Comfortable seating &amp; ambient lighting</li>
+                    <li>Attentive staff</li>
+                    <li>Family-friendly environment</li>
+                </ul>
+            </div>
+            <div class="service-card" style="animation-delay:.2s;">
+                <div class="service-icon"><i class="bx bx-truck"></i></div>
+                <div class="service-title">Fast Delivery</div>
+                <div class="service-desc">
+                    Get your favorite meals delivered hot and fresh to your doorstep, quickly and safely.
+                </div>
+                <ul class="service-list">
+                    <li>Real-time order tracking</li>
+                    <li>Contactless delivery options</li>
+                    <li>Wide delivery coverage</li>
+                </ul>
+            </div>
+            <div class="service-card" style="animation-delay:.3s;">
+                <div class="service-icon"><i class="bx bx-gift"></i></div>
+                <div class="service-title">Event Catering</div>
+                <div class="service-desc">
+                    Make your events memorable with our customized catering services for all occasions.
+                </div>
+                <ul class="service-list">
+                    <li>Birthday parties &amp; weddings</li>
+                    <li>Corporate events</li>
+                    <li>Flexible menu options</li>
+                </ul>
+            </div>
+            <div class="service-card" style="animation-delay:.4s;">
+                <div class="service-icon"><i class="bx bx-leaf"></i></div>
+                <div class="service-title">Healthy Choices</div>
+                <div class="service-desc">
+                    We offer a variety of nutritious and delicious meals for health-conscious customers.
+                </div>
+                <ul class="service-list">
+                    <li>Vegetarian &amp; vegan options</li>
+                    <li>Gluten-free meals</li>
+                    <li>Fresh ingredients daily</li>
+                </ul>
+            </div>
+            <div class="service-card" style="animation-delay:.5s;">
+                <div class="service-icon"><i class="bx bx-coffee"></i></div>
+                <div class="service-title">Coffee &amp; Beverages</div>
+                <div class="service-desc">
+                    Enjoy a wide selection of hot and cold drinks to complement your meal or for a quick
+                    refreshment.
+                </div>
+                <ul class="service-list">
+                    <li>Specialty coffees &amp; teas</li>
+                    <li>Fresh juices &amp; smoothies</li>
+                    <li>Seasonal beverage menu</li>
+                </ul>
+            </div>
+            <div class="service-card" style="animation-delay:.6s;">
+                <div class="service-icon"><i class="bx bx-cake"></i></div>
+                <div class="service-title">Desserts &amp; Sweets</div>
+                <div class="service-desc">
+                    Treat yourself to our homemade desserts and sweet treats, perfect for every occasion.
+                </div>
+                <ul class="service-list">
+                    <li>Daily fresh cakes</li>
+                    <li>Pastries &amp; cookies</li>
+                    <li>Custom dessert orders</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="cta-band">
+            <div>
+                <h2>Ready to treat yourself?</h2>
+                <p>Browse the full menu and order in under a minute.</p>
+                <a href="index.html#items-container" class="btn-light">Order now <i class="bx bx-right-arrow-alt"></i></a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

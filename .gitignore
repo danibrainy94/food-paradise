@@ -1,0 +1,13 @@
+# Local tooling / editor
+.commandcode/
+.vscode/
+.idea/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*

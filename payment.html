@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Checkout your Food Paradise order — delivery details and secure payment.">
+    <title>Checkout | Food Paradise</title>
+    <style>
+        :root {
+            --bg: #FAF5EE;
+            --bg-alt: #F3EAE0;
+            --surface: #FFFFFF;
+            --ink: #2B211C;
+            --ink-soft: #6E6259;
+            --clay: #A84E2A;
+            --clay-dark: #8C3E1F;
+            --clay-soft: #F3DDD2;
+            --sage: #5C7152;
+            --sage-soft: #E7EDE2;
+            --gold: #D9A441;
+            --line: #E8DFD3;
+            --font-display: "Playfair Display", Georgia, serif;
+            --font-body: "Karla", "Segoe UI", sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid var(--clay);
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+        .page-bar {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(250, 245, 238, .92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px;
+        }
+        .logo-text {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--ink);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .45em;
+        }
+        .logo-mark {
+            font-size: 1.25em;
+            color: var(--clay);
+            background: var(--clay-soft);
+            border-radius: 10px;
+            padding: .12em .28em;
+            line-height: 1;
+        }
+        .page-bar a.back {
+            font-weight: 700;
+            font-size: .92rem;
+            color: var(--clay);
+            text-decoration: none;
+            border: 1.5px solid var(--line);
+            background: var(--surface);
+            padding: .5em 1.1em;
+            border-radius: 999px;
+            transition: border-color .25s, transform .25s;
+        }
+        .page-bar a.back:hover {
+            border-color: var(--clay);
+            transform: translateY(-1px);
+        }
+        main {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 40px 16px 56px;
+        }
+        .checkout-container {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: 0 16px 48px rgba(43, 33, 28, .08);
+            padding: 2.4rem 2.2rem;
+            max-width: 1100px;
+            width: 100%;
+            animation: slideUp .6s ease-out backwards;
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(32px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .checkout-head {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .eyebrow {
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--clay);
+        }
+        .checkout-head h1 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            margin: .4rem 0 .3rem;
+        }
+        .checkout-head p {
+            color: var(--ink-soft);
+            margin: 0;
+        }
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 2.6rem;
+            align-items: start;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        .pay-section h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: .6em;
+        }
+        .step-num {
+            display: inline-grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            background: var(--clay);
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: .85rem;
+            font-weight: 700;
+            flex: none;
+        }
+        label {
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: .35rem;
+            display: block;
+            font-size: .95rem;
+        }
+        input,
+        textarea {
+            width: 100%;
+            padding: .75rem .9rem;
+            border: 1.5px solid var(--line);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--ink);
+            transition: border-color .3s;
+            outline: none;
+            resize: none;
+        }
+        input:focus,
+        textarea:focus {
+            border-color: var(--clay);
+        }
+        .field {
+            margin-bottom: 1rem;
+        }
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .field-row .field {
+            margin-bottom: 1rem;
+        }
+        .field-row .field:last-child {
+            margin-bottom: 1rem;
+        }
+
+        /* ---------- Payment method ---------- */
+
+        .pay-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: .8rem;
+            margin-bottom: 1.1rem;
+        }
+        .pay-option {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .45em;
+            text-align: center;
+            padding: .95rem .5rem;
+            border: 1.5px solid var(--line);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: border-color .25s, background .25s, transform .2s;
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--ink-soft);
+        }
+        .pay-option i {
+            font-size: 1.5rem;
+            color: var(--ink);
+            transition: color .25s;
+        }
+        .pay-option:hover {
+            transform: translateY(-1px);
+            border-color: var(--clay-soft);
+        }
+        .pay-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .pay-option.selected {
+            border-color: var(--clay);
+            background: var(--clay-soft);
+            color: var(--ink);
+        }
+        .pay-option.selected i {
+            color: var(--clay);
+        }
+        .pay-option:has(input:focus-visible) {
+            outline: 3px solid var(--clay);
+            outline-offset: 2px;
+        }
+        .pay-panel {
+            display: none;
+            border: 1.5px solid var(--line);
+            border-radius: 14px;
+            padding: 1.1rem 1rem .3rem;
+            background: var(--bg-alt);
+            animation: panelIn .3s ease-out;
+        }
+        .pay-panel.active {
+            display: block;
+        }
+        @keyframes panelIn {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .card-row .field:first-child {
+            grid-column: 1 / -1;
+        }
+        .bank-note {
+            display: flex;
+            flex-direction: column;
+            gap: .55rem;
+            font-size: .95rem;
+        }
+        .bank-note p {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            border-bottom: 1px dashed var(--line);
+            padding-bottom: .55rem;
+        }
+        .bank-note p:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .bank-note span {
+            color: var(--ink-soft);
+        }
+        .bank-note b {
+            color: var(--ink);
+            font-variant-numeric: tabular-nums;
+        }
+        .method-hint {
+            display: flex;
+            align-items: flex-start;
+            gap: .6em;
+            font-size: .92rem;
+            color: var(--ink-soft);
+            padding: 1.1rem 1rem .5rem;
+        }
+        .method-hint i {
+            color: var(--sage);
+            font-size: 1.2rem;
+            margin-top: .1em;
+        }
+
+        /* ---------- Place order button ---------- */
+
+        #place-order-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5em;
+            margin-top: .2rem;
+            background: var(--clay);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 1rem;
+            font-size: 1.05rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(168, 78, 42, .3);
+            transition: background .3s, transform .2s, box-shadow .2s;
+        }
+        #place-order-btn:hover:not(:disabled) {
+            background: var(--clay-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(168, 78, 42, .4);
+        }
+        #place-order-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+        .secure-note {
+            text-align: center;
+            font-size: .85rem;
+            color: var(--ink-soft);
+            margin: -.8rem 0 0;
+        }
+        .secure-note i {
+            color: var(--sage);
+        }
+
+        /* ---------- Order summary ---------- */
+
+        .order-summary {
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 1.5rem 1.3rem;
+            position: sticky;
+            top: 88px;
+        }
+        .order-summary h2 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin: 0 0 1.1rem;
+        }
+        #summary-items {
+            display: flex;
+            flex-direction: column;
+            gap: .9rem;
+            margin-bottom: 1.2rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+        }
+        .summary-item img {
+            width: 54px;
+            height: 54px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex: none;
+            background: var(--surface);
+        }
+        .summary-item .item-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .summary-item .item-info p {
+            margin: 0;
+            font-weight: 700;
+            font-size: .92rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .summary-item .item-info span {
+            font-size: .8rem;
+            color: var(--ink-soft);
+        }
+        .summary-item .item-total {
+            font-weight: 700;
+            font-size: .92rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .summary-totals {
+            border-top: 1px dashed var(--line);
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+        .summary-totals .row {
+            display: flex;
+            justify-content: space-between;
+            font-size: .95rem;
+            color: var(--ink-soft);
+        }
+        .summary-totals .row b {
+            color: var(--ink);
+            font-variant-numeric: tabular-nums;
+        }
+        .summary-totals .row .free {
+            color: var(--sage);
+            font-weight: 700;
+        }
+        .summary-totals .grand {
+            margin-top: .4rem;
+            padding-top: .7rem;
+            border-top: 1px solid var(--line);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+        .summary-totals .grand b {
+            color: var(--clay);
+            font-size: 1.2rem;
+        }
+        .summary-note {
+            margin: 1.1rem 0 0;
+            font-size: .82rem;
+            color: var(--ink-soft);
+            display: flex;
+            align-items: center;
+            gap: .5em;
+        }
+        .summary-note i {
+            color: var(--gold);
+        }
+
+        /* ---------- Empty state ---------- */
+
+        .empty-order {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--ink-soft);
+        }
+        .empty-order i {
+            font-size: 3rem;
+            color: var(--clay);
+            margin-bottom: .8rem;
+        }
+        .empty-order h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--ink);
+            margin: 0 0 .4rem;
+        }
+        .empty-order a {
+            display: inline-block;
+            margin-top: 1.2rem;
+            background: var(--clay);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            padding: .75rem 1.6rem;
+            border-radius: 999px;
+            transition: background .25s;
+        }
+        .empty-order a:hover {
+            background: var(--clay-dark);
+        }
+
+        /* ---------- Success ---------- */
+
+        .success-panel {
+            text-align: center;
+            max-width: 520px;
+            margin: 0 auto;
+            animation: slideUp .6s ease-out backwards;
+        }
+        .success-badge {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 1.4rem;
+            display: grid;
+            place-items: center;
+            background: var(--sage-soft);
+            border-radius: 50%;
+        }
+        .success-badge i {
+            font-size: 3rem;
+            color: var(--sage);
+        }
+        .success-panel h1 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            margin: 0 0 .5rem;
+        }
+        .success-panel .success-sub {
+            color: var(--ink-soft);
+            margin: 0 0 1.6rem;
+        }
+        .success-card {
+            background: var(--bg-alt);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 1.3rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin-bottom: 1.6rem;
+        }
+        .success-card .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: .95rem;
+            color: var(--ink-soft);
+        }
+        .success-card .row b {
+            color: var(--ink);
+        }
+        .success-card .row .grand b {
+            color: var(--clay);
+        }
+        .success-panel a.home-btn {
+            display: inline-block;
+            background: var(--clay);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: .9rem 2rem;
+            border-radius: 999px;
+            box-shadow: 0 10px 24px rgba(168, 78, 42, .3);
+            transition: background .25s, transform .2s;
+        }
+        .success-panel a.home-btn:hover {
+            background: var(--clay-dark);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+            .order-summary {
+                position: static;
+                order: -1;
+            }
+        }
+        @media (max-width: 600px) {
+            .checkout-container {
+                padding: 1.8rem 1.1rem;
+            }
+            .field-row,
+            .card-row {
+                grid-template-columns: 1fr;
+            }
+            .pay-methods {
+                grid-template-columns: 1fr;
+            }
+            .pay-option {
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+            .checkout-head h1 {
+                font-size: 1.7rem;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="./food-img/icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="page-bar">
+        <a href="index.html" class="logo-text"><i class="logo-mark bx bx-utensil"></i>foodParadise</a>
+        <a href="index.html" class="back"><i class='bx bx-left-arrow-alt'></i> Back to menu</a>
+    </div>
+
+    <main>
+        <div class="checkout-container" id="checkout-container">
+            <header class="checkout-head">
+                <p class="eyebrow">Almost there</p>
+                <h1>Checkout</h1>
+                <p>Where should we bring your food, and how would you like to pay?</p>
+            </header>
+
+            <div class="empty-order" id="empty-order" hidden>
+                <i class='bx bx-bowl'></i>
+                <h3>Your cart is empty</h3>
+                <p>Add something delicious before checking out.</p>
+                <a href="index.html">Browse the menu</a>
+            </div>
+
+            <div class="checkout-grid" id="checkout-grid">
+                <form id="payment-form" novalidate>
+                    <section class="pay-section">
+                        <h2><span class="step-num">1</span> Delivery details</h2>
+                        <div class="field">
+                            <label for="cust-name">Full name</label>
+                            <input type="text" id="cust-name" name="cust-name" required
+                                placeholder="e.g. Ada Obi" autocomplete="name">
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="cust-phone">Phone number</label>
+                                <input type="tel" id="cust-phone" name="cust-phone" required
+                                    placeholder="091-000-0000" autocomplete="tel">
+                            </div>
+                            <div class="field">
+                                <label for="cust-email">Email</label>
+                                <input type="email" id="cust-email" name="cust-email" required
+                                    placeholder="you@example.com" autocomplete="email">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="cust-address">Delivery address</label>
+                            <textarea id="cust-address" name="cust-address" rows="2" required
+                                placeholder="House number, street, area, city"></textarea>
+                        </div>
+                        <div class="field" style="margin-bottom:0">
+                            <label for="cust-notes">Delivery notes <span
+                                    style="font-weight:400;color:var(--ink-soft)">(optional)</span></label>
+                            <input type="text" id="cust-notes" name="cust-notes"
+                                placeholder="e.g. call on arrival, gate code 4412">
+                        </div>
+                    </section>
+
+                    <section class="pay-section">
+                        <h2><span class="step-num">2</span> Payment method</h2>
+                        <div class="pay-methods" role="radiogroup" aria-label="Payment method">
+                            <label class="pay-option selected">
+                                <input type="radio" name="pay-method" value="card" checked>
+                                <i class='bx bx-credit-card'></i>
+                                Card
+                            </label>
+                            <label class="pay-option">
+                                <input type="radio" name="pay-method" value="bank">
+                                <i class='bx bx-transfer-alt'></i>
+                                Bank transfer
+                            </label>
+                            <label class="pay-option">
+                                <input type="radio" name="pay-method" value="cash">
+                                <i class='bx bx-cash'></i>
+                                Cash on delivery
+                            </label>
+                        </div>
+
+                        <div class="pay-panel active" id="panel-card">
+                            <div class="field">
+                                <label for="card-number">Card number</label>
+                                <input type="text" id="card-number" name="card-number" inputmode="numeric"
+                                    placeholder="1234 5678 9012 3456" maxlength="19" required>
+                            </div>
+                            <div class="field">
+                                <label for="card-name">Name on card</label>
+                                <input type="text" id="card-name" name="card-name"
+                                    placeholder="As printed on the card" autocomplete="cc-name" required>
+                            </div>
+                            <div class="card-row">
+                                <div class="field">
+                                    <label for="card-expiry">Expiry (MM/YY)</label>
+                                    <input type="text" id="card-expiry" name="card-expiry" inputmode="numeric"
+                                        placeholder="08/27" maxlength="5" required>
+                                </div>
+                                <div class="field">
+                                    <label for="card-cvv">CVV</label>
+                                    <input type="password" id="card-cvv" name="card-cvv" inputmode="numeric"
+                                        placeholder="•••" maxlength="4" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pay-panel" id="panel-bank">
+                            <div class="bank-note">
+                                <p><span>Bank</span> <b>Food Paradise Foods Ltd</b></p>
+                                <p><span>Account name</span> <b>FP Express Kitchens</b></p>
+                                <p><span>Account number</span> <b>0123 4567 89</b></p>
+                                <p><span>Bank</span> <b>Union Bank</b></p>
+                                <p style="display:block"><span>Transfer the total, then place your order — we'll
+                                    confirm your payment before the kitchen starts.</span></p>
+                            </div>
+                        </div>
+
+                        <div class="pay-panel" id="panel-cash">
+                            <p class="method-hint"><i class='bx bx-info-circle'></i> Have the exact amount ready if
+                                you can — our riders carry limited change. The order is confirmed once payment is
+                                made at your door.</p>
+                        </div>
+                    </section>
+
+                    <button type="submit" id="place-order-btn">
+                        <i class='bx bx-lock-alt'></i>
+                        <span id="place-order-label">Place order</span>
+                    </button>
+                    <p class="secure-note"><i class='bx bx-shield-quarter'></i> Demo checkout — no real payment is
+                        processed.</p>
+                </form>
+
+                <aside class="order-summary" aria-label="Order summary">
+                    <h2>Order summary</h2>
+                    <div id="summary-items"></div>
+                    <div class="summary-totals">
+                        <div class="row"><span>Subtotal</span> <b id="sum-subtotal">&#8358;0</b></div>
+                        <div class="row"><span>Delivery</span> <b id="sum-delivery">&#8358;0</b></div>
+                        <div class="row grand"><span>Total</span> <b id="sum-total">&#8358;0</b></div>
+                    </div>
+                    <p class="summary-note"><i class='bx bx-gift'></i> Free delivery on orders over &#8358;15,000</p>
+                </aside>
+            </div>
+        </div>
+
+        <div class="success-panel" id="success-panel" hidden>
+            <div class="success-badge"><i class='bx bxs-check-circle'></i></div>
+            <h1>Order placed!</h1>
+            <p class="success-sub" id="success-sub">Your food is being prepared. We'll call you when the rider is
+                close.</p>
+            <div class="success-card">
+                <div class="row"><span>Order number</span> <b id="success-order-no">FP-00000</b></div>
+                <div class="row"><span>Total paid</span> <b id="success-total">&#8358;0</b></div>
+                <div class="row"><span>Delivery method</span> <b id="success-method">Card</b></div>
+                <div class="row"><span>Estimated arrival</span> <b>30–45 min</b></div>
+            </div>
+            <a href="index.html" class="home-btn"><i class='bx bx-home-alt'></i> Back to home</a>
+        </div>
+    </main>
+
+    <script>
+        const FREE_DELIVERY_THRESHOLD = 15000
+        const DELIVERY_FEE = 1500
+
+        const naira = n => '\u20A6' + Number(n).toLocaleString()
+
+        // ---------- Cart (persisted from the menu page) ----------
+
+        let cart = []
+        try {
+            cart = JSON.parse(localStorage.getItem('fp-cart')) || []
+        } catch (e) {
+            cart = []
+        }
+
+        let orderItems = []
+        let subtotal = 0
+        let deliveryFee = 0
+        let total = 0
+
+        fetch('products.json')
+            .then(r => r.json())
+            .then(products => {
+                orderItems = cart
+                    .map(ci => ({
+                        ...ci,
+                        product: products.find(p => p.id == ci.product_id)
+                    }))
+                    .filter(i => i.product)
+
+                renderSummary()
+
+                if (orderItems.length === 0) {
+                    document.getElementById('checkout-grid').hidden = true
+                    document.getElementById('empty-order').hidden = false
+                }
+            })
+            .catch(() => {
+                document.getElementById('checkout-grid').hidden = true
+                document.getElementById('empty-order').hidden = false
+            })
+
+        function renderSummary () {
+            const list = document.getElementById('summary-items')
+            list.innerHTML = ''
+
+            subtotal = orderItems.reduce((sum, i) => sum + Number(i.product.price) * i.quantity, 0)
+            deliveryFee = subtotal >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE
+            total = subtotal + deliveryFee
+
+            orderItems.forEach(i => {
+                const el = document.createElement('div')
+                el.className = 'summary-item'
+                el.innerHTML = `
+                    <img src="./food-img/${i.product.img}" alt="${i.product.productName}">
+                    <div class="item-info">
+                        <p>${i.product.productName}</p>
+                        <span>${i.quantity} × ${naira(i.product.price)}</span>
+                    </div>
+                    <span class="item-total">${naira(Number(i.product.price) * i.quantity)}</span>
+                `
+                list.appendChild(el)
+            })
+
+            document.getElementById('sum-subtotal').textContent = naira(subtotal)
+            const deliveryEl = document.getElementById('sum-delivery')
+            if (deliveryFee === 0) {
+                deliveryEl.innerHTML = '<span class="free">Free</span>'
+            } else {
+                deliveryEl.textContent = naira(deliveryFee)
+            }
+            document.getElementById('sum-total').textContent = naira(total)
+
+            document.getElementById('place-order-label').textContent =
+                `Place order · ${naira(total)}`
+        }
+
+        // ---------- Payment method switching ----------
+
+        const methodOptions = document.querySelectorAll('.pay-option')
+        const panels = {
+            card: document.getElementById('panel-card'),
+            bank: document.getElementById('panel-bank'),
+            cash: document.getElementById('panel-cash')
+        }
+
+        methodOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const radio = option.querySelector('input')
+                radio.checked = true
+                methodOptions.forEach(o => o.classList.toggle('selected', o === option))
+                Object.entries(panels).forEach(([key, panel]) => {
+                    panel.classList.toggle('active', key === radio.value)
+                })
+            })
+        })
+
+        // ---------- Input formatting ----------
+
+        const cardNumber = document.getElementById('card-number')
+        cardNumber.addEventListener('input', () => {
+            const digits = cardNumber.value.replace(/\D/g, '').slice(0, 16)
+            cardNumber.value = digits.replace(/(\d{4})(?=\d)/g, '$1 ')
+        })
+
+        const cardExpiry = document.getElementById('card-expiry')
+        cardExpiry.addEventListener('input', () => {
+            let digits = cardExpiry.value.replace(/\D/g, '').slice(0, 4)
+            // keep a plausible month (01–12)
+            if (digits.length >= 1) {
+                const first = Number(digits[0])
+                if (first > 1) digits = '0' + digits
+            }
+            if (digits.length >= 3) digits = digits.slice(0, 2) + digits.slice(2)
+            cardExpiry.value = digits.length > 2 ? digits.slice(0, 2) + '/' + digits.slice(2) : digits
+        })
+
+        const cardCvv = document.getElementById('card-cvv')
+        cardCvv.addEventListener('input', () => {
+            cardCvv.value = cardCvv.value.replace(/\D/g, '').slice(0, 4)
+        })
+
+        // ---------- Place order ----------
+
+        const form = document.getElementById('payment-form')
+        const placeOrderBtn = document.getElementById('place-order-btn')
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+
+            if (orderItems.length === 0) return
+
+            // reveal required card fields only when paying by card
+            const method = form.querySelector('input[name="pay-method"]:checked').value
+            panels.card.querySelectorAll('input').forEach(inp => {
+                inp.required = method === 'card'
+            })
+
+            if (!form.checkValidity()) {
+                form.reportValidity()
+                return
+            }
+
+            placeOrderBtn.disabled = true
+            placeOrderBtn.querySelector('i').className = 'bx bx-loader-alt bx-spin'
+
+            // simulate payment processing (demo — no backend)
+            setTimeout(() => {
+                const orderNo = 'FP-' + Math.floor(10000 + Math.random() * 90000)
+                document.getElementById('success-order-no').textContent = orderNo
+                document.getElementById('success-total').textContent = naira(total)
+                document.getElementById('success-method').textContent =
+                    { card: 'Card', bank: 'Bank transfer', cash: 'Cash on delivery' }[method]
+
+                localStorage.removeItem('fp-cart')
+
+                document.getElementById('checkout-container').hidden = true
+                document.getElementById('success-panel').hidden = false
+                window.scrollTo(0, 0)
+            }, 1400)
+        })
+    </script>
+</body>
+</html>
