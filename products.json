@@ -58,7 +58,7 @@
     {
         "id": 8,
         "productName": "Grilled Salmon with quinoa & vegetables",
-        "img": "food11.png",
+        "img": "food11.webp",
         "prodDescript": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse et explicabo quo.",
         "price": 4000,
         "category": "continental"
@@ -74,7 +74,7 @@
     {
         "id": 10,
         "productName": "Veggie bowl with eggs & fresh corn",
-        "img": "food13.png",
+        "img": "food13.jpg",
         "prodDescript": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse et explicabo quo.",
         "price": 6000,
         "category": "nigerian"

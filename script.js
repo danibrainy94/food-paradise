@@ -434,7 +434,7 @@ const cartIcon = document.querySelector('.bx-cart')
 
 const chefData = [
   {
-    img: './food-img/chef1.png',
+    img: './food-img/chef1.webp',
     chefname: 'Luca Moretti',
     description:
       'Mastery in modern Mediterranean and Italian cuisine, blending tradition with innovation using seasonal, high-quality ingredients',
@@ -452,7 +452,7 @@ const chefData = [
     price: 'Moderate'
   },
   {
-    img: './food-img/chef2.png',
+    img: './food-img/chef2.webp',
     chefname: 'Carlos Mendez',
     description:
       'Carlos Mendez specializes in blending bold Latin flavors with modern culinary techniques. Carlos brings a global perspective to authentic, ingredient-driven cuisine.',
